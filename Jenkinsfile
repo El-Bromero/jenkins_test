@@ -1,27 +1,33 @@
-stages{
-    stage('Clone') {
-        steps {
-
+pipeline {
+    agent { 
+        node {
+            label 'docker-agent-python'
+            }
+      }
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building.."
+                sh '''
+                echo "doing build stuff.."
+                '''
+            }
         }
-    }
-    stage('Build') {
-        steps {
-            
+        stage('Test') {
+            steps {
+                echo "Testing.."
+                sh '''
+                echo "doing test stuff..
+                '''
+            }
         }
-    }
-    stage('Test') {
-        steps {
-            
-        }
-    }
-    stage('Package') {
-        steps {
-            
-        }
-    }
-    stage('Deploy') {
-        steps {
-            
+        stage('Deliver') {
+            steps {
+                echo 'Deliver....'
+                sh '''
+                echo "doing delivery stuff.."
+                '''
+            }
         }
     }
 }
