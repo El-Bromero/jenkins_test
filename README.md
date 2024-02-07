@@ -7,3 +7,9 @@ docker run -d --restart=always -p 127.0.0.1:2376:2375 --network jenkins -v /var/
 docker inspect <container_id> | grep IPAddress
 ```
 In a Docker container running Jenkins, I was able to implement the Jenkinsfile to have a simple pipeline that runs the Python code under *myapp* folder
+
+## Modifying Jenkins Docker Container and Running Latest Jenkins Version
+
+```
+docker run --name jenkins --restart=on-failure --detach --network jenkins --env DOCKER_HOST=tcp://docker:2376 --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 --volume jenkins-data:/var/jenkins_home --volume jenkins-docker-certs:/certs/client:ro --publish 8080:8080 --publish 50000:50000 jenkins/jenkins:latest
+```
